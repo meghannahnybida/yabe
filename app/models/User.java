@@ -3,6 +3,7 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 
+import org.junit.Test;
 import play.db.jpa.*;
 
 @Entity
@@ -19,5 +20,11 @@ public class User extends play.db.jpa.Model {
         this.password = password;
         this.fullname = fullname;
     }
+
+    public static User connect(String email, String password){
+        return find("byEmailAndPassword", email, password).first();
+    }
+
+
 
 }
