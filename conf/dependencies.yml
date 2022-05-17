@@ -1,6 +1,8 @@
 # Application dependencies
 
 require:
+    - play -> crud
     - play
     - play -> docviewer
-    - play -> crud
+    # Import the secure module
+    - play -> secure

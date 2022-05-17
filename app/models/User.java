@@ -5,12 +5,16 @@ import javax.persistence.*;
 
 import org.junit.Test;
 import play.db.jpa.*;
+import play.data.validation.*;
 
 @Entity
 @Table(name="blog_user")
 public class User extends play.db.jpa.Model {
-
+    @Email
+    @Required
     public String email;
+
+    @Required
     public String password;
     public String fullname;
     public boolean isAdmin;
@@ -25,6 +29,9 @@ public class User extends play.db.jpa.Model {
         return find("byEmailAndPassword", email, password).first();
     }
 
+    public String toString(){
+        return email;
+    }
 
 
 }

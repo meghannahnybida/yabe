@@ -9,17 +9,17 @@ User(jeff):
   password:       secret
   fullname:       Jeff
 
-  Tag(play):
-    name: Play
+Tag(play):
+  name: Play
 
-  Tag(architecture):
-    name: Architecture
+Tag(architecture):
+  name: Architecture
 
-  Tag(test):
-    name: Test
+Tag(test):
+  name: Test
 
-  Tag(mvc):
-    name: MVC
+Tag(mvc):
+  name: MVC
 
 Post(firstBobPost):
   title:          About the model layer
