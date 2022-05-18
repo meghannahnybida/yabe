@@ -33,5 +33,4 @@ public class User extends play.db.jpa.Model {
         return email;
     }
 
-
 }

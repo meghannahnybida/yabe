@@ -42,11 +42,17 @@ public class Application extends Controller {
             render("Application/show.html", post, randomID);
         }
         post.addComment(author, content);
-        flash.success("Thanks for posting %s", author);
+        flash.success("Thanks for posting %s!", author);
         Cache.delete(randomID);
         show(postId);
     }
 
+    public static void reactWithLike(Long postId, @Required(message="Author is required") String author){
+        Post post = Post.findById(postId);
+        post.addLike(author);
+        flash.success("Thanks for reacting %s!", author);
+        show(postId);
+    }
     public static void captcha(String id){
         Images.Captcha captcha = Images.captcha();
         String code = captcha.getText("#EED4F6");

@@ -1,13 +1,12 @@
 package models;
 
-import java.util.*;
 import javax.persistence.*;
 
 import play.db.jpa.*;
 import play.data.validation.*;
 
 @Entity
-public class Like extends Model {
+public class ReactLike extends Model {
     @Required
     public String author;
 
@@ -15,7 +14,10 @@ public class Like extends Model {
     @Required
     public Post post;
 
-    public Like(Post post, String author) {
+    @Required
+    public int numLikes;
+
+    public ReactLike(Post post, String author) {
         this.post = post;
         this.author = author;
     }
