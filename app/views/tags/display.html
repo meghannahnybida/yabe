@@ -50,13 +50,13 @@
         like${_post.likes.size().pluralize()}
     </h3>
 
-    #{list items:_post.likes, as:'like'}
-        <div class="like">
-            <div class="like-metadata">
-                <span class="like-author">by ${like.author},</span>
-            </div>
-        </div>
-    #{/list}
+    <span class="post-likes">
+        Liked by #{list items:_post.likes, as:'like'}
+                <span class="like-author" > ${like.author} ${like_isLast ? '' : ', '}</span>
+        #{/list}
+    </span>
+
+
 </div>
 
 <div class="comments">
@@ -82,4 +82,3 @@
 </div>
 
 #{/if}
-

@@ -85,3 +85,19 @@ Comment(c3):
 ReactLike(l1):
   author:         Tom
   post:           secondBobPost
+
+ReactLike(l2):
+  author:         Guest
+  post:           secondBobPost
+
+ReactLike(l3):
+  author:         TomFan101
+  post:           firstBobPost
+
+ReactLike(l4):
+  author:         JJ
+  post:           firstBobPost
+
+ReactLike(l5):
+  author:         Jeff
+  post:           firstBobPost
