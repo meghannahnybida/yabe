@@ -50,9 +50,10 @@ public class Application extends Controller {
     public static void reactWithLike(Long postId, @Required(message="Author is required") String author){
         Post post = Post.findById(postId);
         post.addLike(author);
-        flash.success("Thanks for reacting %s!", author);
+        flash.success("Thanks for liking %s!", author);
         show(postId);
     }
+
     public static void captcha(String id){
         Images.Captcha captcha = Images.captcha();
         String code = captcha.getText("#EED4F6");
