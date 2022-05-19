@@ -32,10 +32,14 @@ public class Post extends Model {
     @ManyToMany(cascade=CascadeType.PERSIST)
     public Set<Tag> tags;
 
+    @ManyToMany(cascade=CascadeType.PERSIST)
+    public Set<Profile> profiles;
+
     public Post(User author, String title, String content) {
         this.comments = new ArrayList<Comment>();
         this.likes = new ArrayList<ReactLike>();
         this.tags = new TreeSet<Tag>();
+        this.profiles = new TreeSet<Profile>();
         this.author = author;
         this.title = title;
         this.content = content;
@@ -47,16 +51,31 @@ public class Post extends Model {
         return this;
     }
 
+//    public Post addProfile(String author){
+//        profiles.add(Profile.findOrCreateByName(author));
+//        return this;
+//    }
+
     public static List<Post> findTaggedWith(String tag) {
         return Post.find(
                 "select distinct p from Post p join p.tags as t where t.name = ?1", tag
         ).fetch();
     }
 
+    public static List<Post> findWrittenBy(String profile){
+        return Post.find("author.fullname = ?1", profile).fetch();
+    }
+
     public static List<Post> findTaggedWith(String... tags) {
         return Post.find(
                 "select distinct p from Post p join p.tags as t where t.name in (:tags) group by p.id, p.author, p.title, p.content,p.postedAt having count(t.id) = :size"
         ).bind("tags", tags).bind("size", tags.length).fetch();
+    }
+
+    public static List<Post> findWrittenBy(String... profiles) {
+        return Post.find(
+                "select distinct p from Post p join p.profiles as pf where pf.author in (:profiles) group by p.id, p.author, p.title, p.content,p.postedAt having count(pf.id) = :size"
+        ).bind("profiles", profiles).bind("size", profiles.length).fetch();
     }
 
     public Post addComment(String author, String content) {

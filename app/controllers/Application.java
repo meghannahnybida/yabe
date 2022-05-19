@@ -66,4 +66,9 @@ public class Application extends Controller {
         render(tag, posts);
     }
 
+    public static void listWrittenBy(String profile){
+        List<Post> posts = Post.findWrittenBy(profile);
+        render(profile, posts);
+    }
+
 }

@@ -21,6 +21,12 @@ Tag(test):
 Tag(mvc):
   name: MVC
 
+Profile(p1):
+  author:         Bob
+
+Profile(p2):
+  author:         Jeff
+
 Post(firstBobPost):
   title:          About the model layer
   postedAt:       2009-06-14
@@ -42,6 +48,8 @@ Post(secondBobPost):
   title:          Just a test of YABE
   postedAt:       2009-03-25
   author:         bob
+  profile:
+    - Bob
   content:        >
     Well, it's just a test.
 
@@ -53,6 +61,8 @@ Post(jeffPost):
     - play
     - architecture
     - mvc
+  profile:
+    - Jeff
   content:        >
     A Play! application follows the MVC architectural pattern as applied to the 
     architecture of the Web.
@@ -101,3 +111,4 @@ ReactLike(l4):
 ReactLike(l5):
   author:         Jeff
   post:           firstBobPost
+
