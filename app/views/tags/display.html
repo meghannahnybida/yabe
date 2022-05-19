@@ -50,10 +50,18 @@
         like${_post.likes.size().pluralize()}
 
         <span class="post-likes">
-        |  #{list items:_post.likes, as:'like'}
-            <span class="like-author" > ${like.author} ${like_isLast ? '' : ', '}</span>
-        #{/list}
-    </span>
+            #{if _post.likes}
+                Liked by
+                #{if _post.likes.size() > 5}
+                    ${_post.likes[0].author}, ${_post.likes[1].author}, ${_post.likes[2].author}, ${_post.likes[3].author}, ${_post.likes[4].author} and ${_post.likes.size() - 5} others
+                #{/if}
+            #{else}
+                #{list items:_post.likes, as:'like'}
+                    <span class="like-author" > ${like.author} ${like_isLast ? '' : ', '}</span>
+                #{/list}
+            #{/else}
+            #{/if}
+        </span>
     </h3>
 
 </div>
