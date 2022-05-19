@@ -24,6 +24,19 @@
 
 #{display post:post, as:'full' /}
 
+<span>
+    #{form @Application.reactWithLike(post.id)}
+        <p>
+            <label for="author">Your name: </label>
+            <input type="text" name="author" id="author" />
+        </p>
+        <p>
+            <input type="submit" value="Like" />
+        </p>
+#{/form}
+</span>
+
+
 <h3>Post a comment</h3>
 
 #{form @Application.postComment(post.id)}

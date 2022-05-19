@@ -7,7 +7,15 @@
     <div class="post-metadata">
         <span class="post-author">by ${_post.author.fullname}</span>,
         <span class="post-date">${_post.postedAt.format('dd MMM yy')}</span>
+
         #{if _as != 'full'}
+            <span class="post-likes">
+                &nbsp;|&nbsp; ${_post.likes.size() ?: 'no'}
+                like${_post.likes.size().pluralize()}
+                #{if _post.likes.size() > 1}
+                    , by ${_post.likes[0].author} and more
+                #{/if}
+            </span>
             <span class="post-comments">
                 &nbsp;|&nbsp; ${_post.comments.size() ?: 'no'}
                 comment${_post.comments.size().pluralize()}
@@ -34,6 +42,29 @@
 </div>
 
 #{if _as == 'full'}
+
+<div class="likes">
+    <h3>
+    ${_post.likes.size() ?: 'no'}
+        like${_post.likes.size().pluralize()}
+
+        <span class="post-likes">
+            #{if _post.likes}
+                - Liked by
+                #{if _post.likes.size() > 5}
+                    ${_post.likes[0].author}, ${_post.likes[1].author}, ${_post.likes[2].author}, ${_post.likes[3].author}, ${_post.likes[4].author} and ${_post.likes.size() - 5} more
+                #{/if}
+            #{else}
+                #{list items:_post.likes, as:'like'}
+                    <span class="like-author" > ${like.author} ${like_isLast ? '' : ', '}</span>
+                #{/list}
+            #{/else}
+            #{/if}
+        </span>
+    </h3>
+
+</div>
+
 <div class="comments">
     <h3>
     ${_post.comments.size() ?: 'no'}
@@ -54,7 +85,8 @@
             </div>
         </div>
     #{/list}
-
 </div>
-#{/if}
 
+<h3> Like ${_post.author.fullname}'s post!</h3>
+
+#{/if}

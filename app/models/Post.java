@@ -26,12 +26,15 @@ public class Post extends Model {
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
     public List<Comment> comments;
 
+    @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
+    public List<ReactLike> likes;
 
     @ManyToMany(cascade=CascadeType.PERSIST)
     public Set<Tag> tags;
 
     public Post(User author, String title, String content) {
         this.comments = new ArrayList<Comment>();
+        this.likes = new ArrayList<ReactLike>();
         this.tags = new TreeSet<Tag>();
         this.author = author;
         this.title = title;
@@ -59,6 +62,14 @@ public class Post extends Model {
     public Post addComment(String author, String content) {
         Comment newComment = new Comment(this, author, content).save();
         this.comments.add(newComment);
+        this.save();
+        return this;
+    }
+
+    //adds new likes to the List likes
+    public Post addLike(String author) {
+        ReactLike newLike = new ReactLike(this, author).save();
+        this.likes.add(newLike);
         this.save();
         return this;
     }
