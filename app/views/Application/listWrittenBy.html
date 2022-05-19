@@ -1,9 +1,9 @@
 #{extends 'main.html' /}
-#{set title:'Posts tagged with ' + tag /}
+#{set title:profile+"'s Profile" /}
 
 *{********* Title ********* }*
 
-<h2> ${profile} </h2>
+<h1 style="color:#f5c2cc;"> ${profile} </h1>
 
 #{if posts.size() > 1}
 <h3>There are ${posts.size()} posts made by '${profile}'</h3>
