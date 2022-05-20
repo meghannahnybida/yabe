@@ -7,6 +7,7 @@ import play.libs.*;
 import play.cache.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import models.*;
 
@@ -69,6 +70,19 @@ public class Application extends Controller {
     public static void listWrittenBy(String profile){
         List<Post> posts = Post.findWrittenBy(profile);
         render(profile, posts);
+    }
+
+    public static void listCommentedBy(String profile){
+        List<Post> comments = Post.findWrittenBy(profile);
+
+        //List<Comment> commentList = comments.stream().map(p -> p.comments).collect(Collectors.toList());
+
+
+//        for(Post post : comments) {
+//            post.comments // collect them
+//        }
+
+        render(profile, comments);
     }
 
 }

@@ -66,6 +66,10 @@ public class Post extends Model {
         return Post.find("author.fullname = ?1", profile).fetch();
     }
 
+//    public static List<Post> findCommentedBy(String profile){
+//        return Post.find("author.fullname = ?1", profile).fetch();
+//    }
+
     public static List<Post> findTaggedWith(String... tags) {
         return Post.find(
                 "select distinct p from Post p join p.tags as t where t.name in (:tags) group by p.id, p.author, p.title, p.content,p.postedAt having count(t.id) = :size"
