@@ -26,7 +26,7 @@ public class Post extends Model {
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
     public List<Comment> comments;
 
-    @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="post", cascade=CascadeType.REMOVE)
     public List<ReactLike> likes;
 
     @ManyToMany(cascade=CascadeType.PERSIST)
