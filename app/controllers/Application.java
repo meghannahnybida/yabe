@@ -74,4 +74,18 @@ public class Application extends Controller {
         List<ReactLike> likes = ReactLike.findLikedBy(profile);
         render(profile, posts, comments, likes);
     }
+
+    public static void getMetrics(){
+        Map<String, Integer> jsonOutput = new HashMap<>();
+
+        List<Post> posts = Post.findAll();
+        List<Comment> comments = Comment.findAll();
+        List<ReactLike> likes = ReactLike.findAll();
+
+        jsonOutput.put("Users", 2);
+        jsonOutput.put("Posts", posts.size());
+        jsonOutput.put("Comments", comments.size());
+        jsonOutput.put("Likes", likes.size());
+        renderJSON(jsonOutput);
+    }
 }
