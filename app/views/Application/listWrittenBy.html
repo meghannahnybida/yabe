@@ -48,6 +48,7 @@
   #{display post:post, as:'teaser' /}
   #{/list}
 </div>
+<hr>
 
 <!-- Comments section -->
 #{if comments.size() > 1}
@@ -64,6 +65,7 @@
 
 <div class="older-posts">
 #{list items:comments, as:'comment'}
-  #{display post:comment, as:'comment-link' /}
+  #{display post:comment, as:'teaser' /}
   #{/list}
 </div>
+<hr>
