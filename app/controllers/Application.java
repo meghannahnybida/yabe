@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import models.*;
+import play.mvc.results.RenderTemplate;
 
 public class Application extends Controller {
 
@@ -33,13 +34,13 @@ public class Application extends Controller {
         render(post, randomID);
     }
 
-    public static void postComment(Long postId, @Required(message="Author is required") String author,
-                                   @Required(message="A message is required") String content,
-                                   @Required(message="Please type the code") String code,
+    public static void postComment(Long postId, @Required(message = "Author is required") String author,
+                                   @Required(message = "A message is required") String content,
+                                   @Required(message = "Please type the code") String code,
                                    String randomID) {
         Post post = Post.findById(postId);
         validation.equals(code, Cache.get(randomID)).message("Invalid code. Please type it again");
-        if(validation.hasErrors()){
+        if (validation.hasErrors()) {
             render("Application/show.html", post, randomID);
         }
         post.addComment(author, content);
@@ -48,41 +49,28 @@ public class Application extends Controller {
         show(postId);
     }
 
-    public static void reactWithLike(Long postId, @Required(message="Author is required") String author){
+    public static void reactWithLike(Long postId, @Required(message = "Author is required") String author) {
         Post post = Post.findById(postId);
         post.addLike(author);
         flash.success("Thanks for liking %s!", author);
         show(postId);
     }
 
-    public static void captcha(String id){
+    public static void captcha(String id) {
         Images.Captcha captcha = Images.captcha();
         String code = captcha.getText("#EED4F6");
         Cache.set(id, code, "10mn");
         renderBinary(captcha);
     }
 
-    public static void listTagged(String tag){
+    public static void listTagged(String tag) {
         List<Post> posts = Post.findTaggedWith(tag);
         render(tag, posts);
     }
 
-    public static void listWrittenBy(String profile){
+    public static void listWrittenBy(String profile) {
         List<Post> posts = Post.findWrittenBy(profile);
-        render(profile, posts);
+        List<Comment> comments = Comment.findCommentedBy(profile);
+        render(profile, posts, comments);
     }
-
-    public static void listCommentedBy(String profile){
-        List<Post> comments = Post.findWrittenBy(profile);
-
-        //List<Comment> commentList = comments.stream().map(p -> p.comments).collect(Collectors.toList());
-
-
-//        for(Post post : comments) {
-//            post.comments // collect them
-//        }
-
-        render(profile, comments);
-    }
-
 }

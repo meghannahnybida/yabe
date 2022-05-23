@@ -46,6 +46,10 @@ public class Post extends Model {
         this.postedAt = new Date();
     }
 
+    public List<Comment> getComments(){
+        return comments;
+    }
+
     public Post tagItWith(String name){
         tags.add(Tag.findOrCreateByName(name));
         return this;
@@ -66,8 +70,8 @@ public class Post extends Model {
         return Post.find("author.fullname = ?1", profile).fetch();
     }
 
-//    public static List<Post> findCommentedBy(String profile){
-//        return Post.find("author.fullname = ?1", profile).fetch();
+//    public static List<Comment> findCommentedBy(String profile){
+//        return Comment.find("author.fullname = ?1", profile).fetch();
 //    }
 
     public static List<Post> findTaggedWith(String... tags) {

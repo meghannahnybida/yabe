@@ -29,4 +29,9 @@ public class Comment extends Model {
         this.postedAt = new Date();
     }
 
+    public static List<Comment> findCommentedBy(String profile){
+        //return Comment.find("author = ?1", profile).fetch();
+        return Comment.find("select p from Post p, Comment c where c.post = p and c.author = ?1", profile).fetch();
+    }
+
 }

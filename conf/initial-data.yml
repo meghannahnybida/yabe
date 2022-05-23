@@ -86,6 +86,13 @@ Comment(c3):
   postedAt:       2009-04-05
   post:           secondBobPost
 
+Comment(c4):
+  author:         Bob
+  content:        >
+    Please work <3
+  postedAt:       2009-05-023
+  post:           jeffPost
+
 ReactLike(l1):
   author:         Tom
   post:           secondBobPost
@@ -105,4 +112,3 @@ ReactLike(l4):
 ReactLike(l5):
   author:         Jeff
   post:           firstBobPost
-

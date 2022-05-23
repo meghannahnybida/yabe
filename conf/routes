@@ -11,7 +11,7 @@ POST    /posts/{postId}/comments                Application.postComment
 GET     /captcha                                Application.captcha
 
 # Likes
-POST    /like/post-likes                                 Application.reactWithLike
+POST    /like/post-likes                        Application.reactWithLike
 
 
 # Ignore favicon requests

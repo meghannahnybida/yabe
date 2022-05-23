@@ -3,33 +3,36 @@
 
 <html>
 <head>
-  <style>
-  h1 {text-align: center;}
-  </style>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 </html>
 
 *{********* Title ********* }*
 
 <style>
-  hr{
-    height: 1px;
-    background-color: #f5c2cc;
-    border: none;
-  }
-  h1{
-    font-family: Bernard;
-  }
+    hr {
+        height: 1px;
+        background-color: #f5c2cc;
+        border: none;
+    }
+
+    h1 {
+        font-family: Bernard;
+    }
 </style>
 
 <font size="+3">
-<h1 style="color:#f5c2cc;"> ${profile}'s Profile </h1>
-  <hr>
+    <h1 style="color:#f5c2cc;"> ${profile}'s Profile </h1>
+    <hr>
 </font>
 
 <!-- Posts section -->
 #{if posts.size() > 1}
-  <h3>${posts.size()} posts</h3>
+<h3>${posts.size()} posts</h3>
 #{/if}
 #{elseif posts}
 <h3>There is 1 post made by '${profile}'</h3>
@@ -47,10 +50,10 @@
 </div>
 
 <!-- Comments section -->
-#{if posts.comments.size() > 1}
-<h3>${posts.comments.size()} comments</h3>
+#{if comments.size() > 1}
+<h3>${comments.size()} comments</h3>
 #{/if}
-#{elseif posts.comments}
+#{elseif comments}
 <h3>There is 1 comment made by '${profile}'</h3>
 #{/elseif}
 #{else}
@@ -59,8 +62,8 @@
 
 *{********* Comments list *********}*
 
-<div class="comment-metadata">
-#{list items:comments, as:'post'}
-  #{display post:post, as:'teaser' /}
+<div class="older-posts">
+#{list items:comments, as:'comment'}
+  #{display post:comment, as:'comment-link' /}
   #{/list}
 </div>
