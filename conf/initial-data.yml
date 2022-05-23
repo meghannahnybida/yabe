@@ -21,6 +21,12 @@ Tag(test):
 Tag(mvc):
   name: MVC
 
+Profile(p1):
+  author:         Bob
+
+Profile(p2):
+  author:         Jeff
+
 Post(firstBobPost):
   title:          About the model layer
   postedAt:       2009-06-14
@@ -35,8 +41,6 @@ Post(firstBobPost):
     business situation, and business rules. State that reflects the business situation 
     is controlled and used here, even though the technical details of storing it are 
     delegated to the infrastructure. This layer is the heart of business software.
-    
-
 
 Post(secondBobPost):
   title:          Just a test of YABE
@@ -81,6 +85,13 @@ Comment(c3):
     This post is useless ?
   postedAt:       2009-04-05
   post:           secondBobPost
+
+Comment(c4):
+  author:         Bob
+  content:        >
+    Please work <3
+  postedAt:       2009-05-023
+  post:           jeffPost
 
 ReactLike(l1):
   author:         Tom
