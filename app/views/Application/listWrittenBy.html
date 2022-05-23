@@ -32,13 +32,13 @@
 
 <!-- Posts section -->
 #{if posts.size() > 1}
-<h3>${posts.size()} posts</h3>
+<h3> There is ${posts.size()} posts made by ${profile}</h3>
 #{/if}
 #{elseif posts}
-<h3>There is 1 post made by '${profile}'</h3>
+<h3>There is 1 post made by ${profile}</h3>
 #{/elseif}
 #{else}
-<h3>No posts made by '${profile}'</h3>
+<h3>No posts made by ${profile}</h3>
 #{/else}
 
 *{********* Posts list *********}*
@@ -52,13 +52,13 @@
 
 <!-- Comments section -->
 #{if comments.size() > 1}
-<h3>${comments.size()} comments</h3>
+<h3>There is ${comments.size()} post commented on by ${profile}</h3>
 #{/if}
 #{elseif comments}
-<h3>There is 1 comment made by '${profile}'</h3>
+<h3> There is 1 post commented on by ${profile}</h3>
 #{/elseif}
 #{else}
-<h3>No comments made by '${profile}'</h3>
+<h3>No comments made by ${profile}</h3>
 #{/else}
 
 *{********* Comments list *********}*
@@ -69,3 +69,22 @@
   #{/list}
 </div>
 <hr>
+
+<!-- Likes section -->
+#{if likes.size() > 1}
+<h3>${profile} liked ${likes.size()} posts</h3>
+#{/if}
+#{elseif likes}
+<h3>There is 1 like made by ${profile}</h3>
+#{/elseif}
+#{else}
+<h3>No likes made by '${profile}'</h3>
+#{/else}
+
+*{********* Comments list *********}*
+
+<div class="older-posts">
+#{list items:likes, as:'like'}
+  #{display post:like, as:'teaser' /}
+  #{/list}
+</div>

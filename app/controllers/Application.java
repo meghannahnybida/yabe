@@ -71,6 +71,7 @@ public class Application extends Controller {
     public static void listWrittenBy(String profile) {
         List<Post> posts = Post.findWrittenBy(profile);
         List<Comment> comments = Comment.findCommentedBy(profile);
-        render(profile, posts, comments);
+        List<ReactLike> likes = ReactLike.findLikedBy(profile);
+        render(profile, posts, comments, likes);
     }
 }
