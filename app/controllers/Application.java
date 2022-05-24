@@ -75,17 +75,14 @@ public class Application extends Controller {
         render(profile, posts, comments, likes);
     }
 
+
     public static void getMetrics(){
-        Map<String, Integer> jsonOutput = new HashMap<>();
+        Map<String, Long> jsonOutput = new HashMap<>();
 
-        List<Post> posts = Post.findAll();
-        List<Comment> comments = Comment.findAll();
-        List<ReactLike> likes = ReactLike.findAll();
-
-        jsonOutput.put("Users", 2);
-        jsonOutput.put("Posts", posts.size());
-        jsonOutput.put("Comments", comments.size());
-        jsonOutput.put("Likes", likes.size());
+        jsonOutput.put("Users", User.count());
+        jsonOutput.put("Posts", Post.count());
+        jsonOutput.put("Comments", Comment.count());
+        jsonOutput.put("Likes", ReactLike.count());
         renderJSON(jsonOutput);
     }
 }
