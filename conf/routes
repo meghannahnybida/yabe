@@ -10,6 +10,9 @@ GET     /profile/{profile}                      Application.listWrittenBy
 POST    /posts/{postId}/comments                Application.postComment
 GET     /captcha                                Application.captcha
 
+# Metrics
+GET     /metrics.json                                Application.getMetrics
+
 # Likes
 POST    /like/post-likes                        Application.reactWithLike
 
